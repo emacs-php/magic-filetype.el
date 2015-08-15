@@ -1,5 +1,8 @@
 * vim-filetype
-
+#+BEGIN_HTML
+<a href="https://travis-ci.org/zonuexe/vim-filetype.el"><img alt="Build Status" src="https://travis-ci.org/zonuexe/vim-filetype.el.svg?branch=master"></a>
+<a href='https://coveralls.io/r/zonuexe/vim-filetype.el?branch=master'><img alt="Coverage Status" src="https://coveralls.io/repos/zonuexe/vim-filetype.el/badge.svg?branch=master"></a>
+#+END_HTML
 =vim-filetype.el= parse Vim-style filetype header.
 
 ** Setup
