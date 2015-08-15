@@ -54,7 +54,7 @@
     ("debcontrol"   . ("/dir/debian/control"))
     ("debsources"   . ("/dir/sources.list"))
     ("esqlc"        . ("/dir/file.sql" (sql-product . informix)))
-    ("gdb"          . ('gdb-script-mode))
+    ("gdb"          . (gdb-script-mode))
     ("go"           . ("/dir/file.go"))
     ("haml"         . ("/dir/file.haml"))
     ("haskell"      . ("/dir/file.hs"))
@@ -92,7 +92,7 @@
       (let* ((data (assoc-default lang vim-filetype-mode-alist))
              (file (car data))
              (vim-major-mode
-              (if (symbolp file) (eval file)
+              (if (symbolp file) file
                 (assoc-default file auto-mode-alist #'string-match))))
         (when vim-major-mode
           (funcall vim-major-mode)
