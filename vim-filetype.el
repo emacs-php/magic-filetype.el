@@ -7,7 +7,7 @@
 ;; Created: 9 Aug 2015
 ;; Version: 0.0.1
 ;; Keywords: vim ft file magic-mode
-;; Package-Requires: ((s "1.9.0") (dash "2.11.0"))
+;; Package-Requires: ((s "1.9.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -44,7 +44,6 @@
 ;;; Code:
 
 (require 's)
-(require 'dash)
 
 (defcustom vim-filetype-line-re
   "vim: *set +\\(?:ft\\|filetype\\)=\\(.+\\):"

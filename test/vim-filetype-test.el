@@ -10,7 +10,7 @@
 ;; This file is NOT part of GNU Emacs.
 
 ;;; Code:
-(require 'vim-filetype ".")
+(require 'vim-filetype)
 
 (ert-deftest vim-filetype/test\#test-regexp ()
   (let ((data
