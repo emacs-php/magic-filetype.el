@@ -61,7 +61,7 @@
     (debchangelog . ("/dir/debian/changelog"))
     (debcontrol   . ("/dir/debian/control"))
     (debsources   . ("/dir/sources.list"))
-    (esqlc        . ("/dir/file.sql" (sql-product . informix)))
+    (esqlc        . (sql-mode . (lambda () (sql-set-product 'informix))))
     (gdb          . (gdb-script-mode))
     (go           . ("/dir/file.go"))
     (haml         . ("/dir/file.haml"))
@@ -71,17 +71,17 @@
     (javascript   . ("/dir/file.js"))
     (json         . ("/dir/file.json"))
     (markdown     . ("/dir/file.md"))
-    (msql         . ("/dir/file.sql" (sql-product . mysql)))
+    (msql         . (sql-mode . (lambda () (sql-set-product 'mysql))))
     (pascal       . ("/dir/file.pas"))
     (perl         . ("/dir/file.pl"))
-    (plsql        . ("/dir/file.sql" (sql-product . oracle)))
+    (plsql        . (sql-mode . (lambda () (sql-set-product 'oracle))))
     (python       . ("/dir/file.py"))
     (ruby         . ("/dir/file.rb"))
     (sass         . ("/dir/file.sass"))
     (scheme       . ("/dir/file.scm"))
-    (sql          . ("/dir/file.sql"))
-    (sqlinformix  . ("/dir/file.sql" (sql-product . informix)))
-    (sqloracle    . ("/dir/file.sql" (sql-product . oracle)))
+    (sql          . (sql-mode))
+    (sqlinformix  . (sql-mode . (lambda () (sql-set-product 'informix))))
+    (sqloracle    . (sql-mode . (lambda () (sql-set-product 'oracle))))
     (vim          . ("/dir/file.vim"))
     (xhtml        . ("/dir/file.xhtml"))
     (xml          . ("/dir/file.xml"))
@@ -91,21 +91,21 @@
   :type  '(alist :key-type symbol :value-type list))
 
 ;;;###autoload
-(defun vim-filetype-magic-mode ()
-  "Invoke `major-mode' by Vim-style file header."
+(defun vim-filetype-magic-mode (&optional ft)
+  "Invoke `major-mode' by Vim-style `FT' file header."
   (interactive)
   (let* ((bufs (buffer-substring-no-properties (point-min) (point-max)))
-         (lang (cadr (s-match vim-filetype-line-re bufs))))
+         (lang (or ft (cadr (s-match vim-filetype-line-re bufs)))))
     (when lang
-      (let* ((data (assq (intern lang) vim-filetype-mode-alist))
+      (let* ((data (cdr (assq (intern lang) vim-filetype-mode-alist)))
              (file (car data))
              (vim-major-mode
               (if (symbolp file) file
                 (assoc-default file auto-mode-alist #'string-match))))
         (when vim-major-mode
           (funcall vim-major-mode)
-          (--each (cdr data)
-            (set (car it) (cdr it)))
+          (when (cdr data)
+            (funcall (cdr data)))
           vim-major-mode)))))
 
 ;;;###autoload
