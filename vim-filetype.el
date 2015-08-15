@@ -96,7 +96,6 @@
                 (assoc-default file auto-mode-alist #'string-match))))
         (when vim-major-mode
           (funcall vim-major-mode)
-          data
           (--each (cdr data)
             (set (car it) (cdr it)))
           vim-major-mode)))))
