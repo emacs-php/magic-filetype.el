@@ -1,0 +1,11 @@
+* vim-filetype
+
+=vim-filetype.el= parse Vim-style filetype header.
+
+** Setup
+
+put into your own =.emacs= file (=init.el=)
+
+#+BEGIN_SRC emacs-lisp
+(enable-vim-filetype)
+#+END_SRC
