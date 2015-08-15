@@ -107,4 +107,5 @@
   (interactive)
   (add-to-list 'magic-mode-alist `(,vim-filetype-line-re . vim-filetype-magic-mode)))
 
+(provide 'vim-filetype)
 ;;; vim-filetype.el ends here
