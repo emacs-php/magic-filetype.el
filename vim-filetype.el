@@ -1,4 +1,5 @@
 ;;; vim-filetype.el --- Parse Vim-style filetype header
+;;; vim: set ft=lisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
 
@@ -25,13 +26,20 @@
 
 ;;; Commentary:
 
-;; 
-;; vim:set ft=lisp:
+;; `vim-filetype' parse Vim-style file header.
+;; For example, in executable JavaScript(node) file is...
+
+;;   #!/usr/bin/env node
+;;   // vim:set ft=javascript:
+;;   (function(){
+;;       "use strict";
+;;        ....
 
 ;; put into your own .emacs file (init.el)
 
 ;;   (enable-vim-filetype)
 
+;; `vim-filetype-mode-alist' have dummy filename that is delegate of major-mode.
 
 ;;; Code:
 
@@ -102,9 +110,9 @@
 
 ;;;###autoload
 (defun enable-vim-filetype ()
-  ""
+  "Turn on magic-mode by Vim-style file header."
   (interactive)
-  (add-to-list 'magic-mode-alist `(,vim-filetype-line-re . vim-filetype-magic-mode)))
+  (add-to-list 'magic-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
 
 (provide 'vim-filetype)
 ;;; vim-filetype.el ends here
