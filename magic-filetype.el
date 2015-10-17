@@ -107,7 +107,7 @@
     (scheme       . ("/dir/file.scm"))
     (scss         . ("/dir/file.scss"))
     (standardml   . ("/dir/file.sml"))
-    (sql          . (sql-mode))
+    (sql          . ("/dir/file.sql"))
     (sqlinformix  . (sql-mode . (lambda () (sql-set-product 'informix))))
     (sqloracle    . (sql-mode . (lambda () (sql-set-product 'oracle))))
     (swift        . ("/dir/file.swift"))
