@@ -1,4 +1,5 @@
 ;;; magic-filetype.el --- Parse Vim-style filetype header -*- lexical-binding: t -*-
+;;; vim: set ft=emacslisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
 
