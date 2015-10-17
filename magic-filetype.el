@@ -129,5 +129,14 @@
   (interactive)
   (add-to-list 'magic-fallback-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
 
+;;;###autoload
+(defun reload-major-mode ()
+  "Reload current major mode."
+  (interactive)
+  (let ((current-mode major-mode))
+    (fundamental-mode)
+    (funcall current-mode)
+    current-mode))
+
 (provide 'magic-filetype)
 ;;; magic-filetype.el ends here
