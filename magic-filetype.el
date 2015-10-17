@@ -127,7 +127,7 @@
 (defun enable-vim-filetype ()
   "Turn on magic-mode by Vim-style file header."
   (interactive)
-  (add-to-list 'magic-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
+  (add-to-list 'magic-fallback-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
 
 (provide 'magic-filetype)
 ;;; magic-filetype.el ends here
