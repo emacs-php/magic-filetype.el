@@ -1,4 +1,4 @@
-;;; vim-filetype.el --- Parse Vim-style filetype header
+;;; magic-filetype.el --- Parse Vim-style filetype header
 ;;; vim: set ft=lisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
@@ -48,7 +48,7 @@
 (defcustom vim-filetype-line-re
   "vim: *set +\\(?:ft\\|filetype\\)=\\(.+\\):"
   "Regexp of Vim filetype line."
-  :group 'vim-filetype
+  :group 'magic-filetype
   :type  'regexp)
 
 (defcustom vim-filetype-mode-alist
@@ -102,7 +102,7 @@
     (yaml         . ("/dir/file.yml"))
     (zsh          . (sh-mode . (lambda () (sh-set-shell "zsh")))))
   "Alist of Vim-filetype vs dummy filename."
-  :group 'vim-filetype
+  :group 'magic-filetype
   :type  '(alist :key-type symbol :value-type list))
 
 ;;;###autoload
@@ -129,5 +129,5 @@
   (interactive)
   (add-to-list 'magic-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
 
-(provide 'vim-filetype)
-;;; vim-filetype.el ends here
+(provide 'magic-filetype)
+;;; magic-filetype.el ends here
