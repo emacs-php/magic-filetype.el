@@ -45,7 +45,7 @@
 
 (require 's)
 
-(defcustom vim-filetype-line-re
+(defcustom magic-filetype-vim-filetype-line-re
   "vim: *set +\\(?:ft\\|filetype\\)=\\(.+\\):"
   "Regexp of Vim filetype line."
   :group 'magic-filetype
@@ -126,7 +126,7 @@
   :type  '(alist :key-type symbol :value-type list))
 
 ;;;###autoload
-(defun major-mode-from-language-name (lang-name)
+(defun magic-filetype:major-mode-from-language-name (lang-name)
   "Invoke `major-mode' from `LANG-NAME'."
   (interactive
    (list
@@ -144,22 +144,22 @@
         new-major-mode))))
 
 ;;;###autoload
-(defun vim-filetype-magic-mode (&optional ft)
+(defun magic-filetype:vim-filetype-magic-mode (&optional ft)
   "Invoke `major-mode' by Vim-style `FT' file header."
   (interactive)
   (let* ((bufs (buffer-substring-no-properties (point-min) (point-max)))
-         (lang (or ft (cadr (s-match vim-filetype-line-re bufs)))))
+         (lang (or ft (cadr (s-match magic-filetype-vim-filetype-line-re bufs)))))
     (when lang
-      (major-mode-from-language-name lang))))
+      (magic-filetype:major-mode-from-language-name lang))))
 
 ;;;###autoload
-(defun enable-vim-filetype ()
+(defun magic-filetype:enable-vim-filetype ()
   "Turn on magic-mode by Vim-style file header."
   (interactive)
-  (add-to-list 'magic-fallback-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
+  (add-to-list 'magic-fallback-mode-alist '(magic-filetype:vim-filetype-magic-mode . magic-filetype:vim-filetype-magic-mode)))
 
 ;;;###autoload
-(defun major-mode-of (lang-name)
+(defun magic-filetype:major-mode-of (lang-name)
   "Get MAJOR-MODE from `LANG-NAME'."
   (let* ((data (cdr (assq lang-name magic-filetype-mode-alist)))
          (file (car data))
@@ -169,10 +169,13 @@
     (unless new-major-mode (error "Unknown LANG-NAME"))
     (if (cdr data)
         (lambda () (funcall new-major-mode) (funcall (cdr data)))
-     new-major-mode)))
+      new-major-mode)))
 
 ;;;###autoload
-(defun reload-major-mode ()
+(defalias 'major-mode-of (symbol-function 'magic-filetype:major-mode-of))
+
+;;;###autoload
+(defun magic-filetype:reload-major-mode ()
   "Reload current major mode."
   (interactive)
   (let ((current-mode major-mode))

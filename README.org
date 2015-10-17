@@ -9,7 +9,7 @@
 *** Support Vim-style filetype
 put into your own =.emacs= file (=init.el=)
 #+BEGIN_SRC emacs-lisp
-(enable-vim-filetype)
+(magic-filetype:enable-vim-filetype)
 #+END_SRC
 
 *** Major mode settings
@@ -21,7 +21,7 @@ for example...
 #+END_SRC
 
 *** Use major mode from language name
-=M-x major-mode-from-language-name=
+=M-x magic-filetype:major-mode-from-language-name=
 
 *** Reload major mode
-=M-x reload-major-mode=
+=M-x magic-filetype:reload-major-mode=
