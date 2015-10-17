@@ -22,13 +22,8 @@
        (let ((expected (plist-get d :expected))
              (header   (plist-get d :header)))
          (should (string= expected
-                          (cadr (s-match vim-filetype-line-re header))
+                          (cadr (s-match magic-filetype-vim-filetype-line-re header))
                           ))))
      data)))
-
-(cadr (s-match vim-filetype-line-re "// vim:set ft=javascript:"))
-
-(setq vim-filetype-line-re
-  "vim:set +\\(?:ft\\|filetype\\)=\\(.+\\):")
 
 ;;; vim-filetype-test.el ends here
