@@ -1,5 +1,5 @@
-;;; magic-filetype.el --- Parse Vim-style filetype header -*- lexical-binding: t -*-
-;;; vim: set ft=emacslisp:
+;;; magic-filetype.el --- Parse Vim-style filetype header -*- mode: emacs-lisp; lexical-binding: t -*-
+;;; vim: set ft=lisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
 
@@ -26,7 +26,7 @@
 
 ;;; Commentary:
 
-;; `vim-filetype' parse Vim-style file header.
+;; `magic-filetype' parse Vim-style file header.
 ;; For example, in executable JavaScript(node) file is...
 
 ;;   #!/usr/bin/env node
