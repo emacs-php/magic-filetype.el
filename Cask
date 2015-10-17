@@ -1,8 +1,8 @@
 (source gnu)
 (source melpa)
 
-(package "vim-filetype" "0.0.1" "Parse Vim-style filetype header")
-(package-file "vim-filetype.el")
+(package "magic-filetype" "0.0.1" "Parse Vim-style filetype header")
+(package-file "magic-filetype.el")
 
 (depends-on "s")
 
