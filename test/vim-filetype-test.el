@@ -1,4 +1,4 @@
-;;; vim-filetype-test.el --- test for vim-filetype
+;;; vim-filetype-test.el --- test for vim-filetype -*- mode: emacs-lisp; lexical-binding: t -*-
 
 ;; Copyright (C) 2015 USAMI Kenta
 
