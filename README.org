@@ -16,8 +16,8 @@ put into your own =.emacs= file (=init.el=)
 for example...
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'auto-mode-alist '("/\\.mysql\\'" . (major-mode-of 'mysql)))
-(add-to-list 'auto-mode-alist '("/composer.lock\\'" . (major-mode-of 'json)))
+(add-to-list 'auto-mode-alist `("/\\.mysql\\'" . ,(major-mode-of 'mysql)))
+(add-to-list 'auto-mode-alist `("/composer.lock\\'" . ,(major-mode-of 'json)))
 #+END_SRC
 
 *** Use major mode from language name
