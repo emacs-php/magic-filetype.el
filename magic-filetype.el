@@ -51,7 +51,7 @@
   :group 'magic-filetype
   :type  'regexp)
 
-(defcustom vim-filetype-mode-alist
+(defcustom magic-filetype-mode-alist
   '((basic        . ("/dir/file.bas"))
     (c            . ("/dir/file.c"))
     (changelog    . ("/dir/Changelog"))
@@ -106,22 +106,31 @@
   :type  '(alist :key-type symbol :value-type list))
 
 ;;;###autoload
+(defun major-mode-from-language-name (lang-name)
+  "Invoke `major-mode' from `LANG-NAME'."
+  (interactive
+   (list
+    (completing-read "Choose language: " magic-filetype-mode-alist)))
+  (when lang-name
+    (let* ((data (cdr (assq (intern lang-name) magic-filetype-mode-alist)))
+           (file (car data))
+           (new-major-mode
+            (if (symbolp file) file
+              (assoc-default file auto-mode-alist #'string-match))))
+      (when new-major-mode
+        (funcall new-major-mode)
+        (when (cdr data)
+          (funcall (cdr data)))
+        new-major-mode))))
+
+;;;###autoload
 (defun vim-filetype-magic-mode (&optional ft)
   "Invoke `major-mode' by Vim-style `FT' file header."
   (interactive)
   (let* ((bufs (buffer-substring-no-properties (point-min) (point-max)))
          (lang (or ft (cadr (s-match vim-filetype-line-re bufs)))))
     (when lang
-      (let* ((data (cdr (assq (intern lang) vim-filetype-mode-alist)))
-             (file (car data))
-             (vim-major-mode
-              (if (symbolp file) file
-                (assoc-default file auto-mode-alist #'string-match))))
-        (when vim-major-mode
-          (funcall vim-major-mode)
-          (when (cdr data)
-            (funcall (cdr data)))
-          vim-major-mode)))))
+      (major-mode-from-language-name lang))))
 
 ;;;###autoload
 (defun enable-vim-filetype ()
