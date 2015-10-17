@@ -1,4 +1,4 @@
-;;; magic-filetype.el --- Parse Vim-style filetype header -*- mode: emacs-lisp; lexical-binding: t -*-
+;;; magic-filetype.el --- Enhance filetype major mode -*- mode: emacs-lisp; lexical-binding: t -*-
 ;;; vim: set ft=lisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
