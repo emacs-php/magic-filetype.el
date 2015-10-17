@@ -1,4 +1,4 @@
-;;; magic-filetype.el --- Parse Vim-style filetype header
+;;; magic-filetype.el --- Parse Vim-style filetype header -*- lexical-binding: t -*-
 ;;; vim: set ft=lisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
@@ -157,6 +157,19 @@
   "Turn on magic-mode by Vim-style file header."
   (interactive)
   (add-to-list 'magic-fallback-mode-alist '(vim-filetype-magic-mode . vim-filetype-magic-mode)))
+
+;;;###autoload
+(defun major-mode-of (lang-name)
+  "Get MAJOR-MODE from `LANG-NAME'."
+  (let* ((data (cdr (assq lang-name magic-filetype-mode-alist)))
+         (file (car data))
+         (new-major-mode
+          (if (symbolp file) file
+            (assoc-default file auto-mode-alist #'string-match))))
+    (unless new-major-mode (error "Unknown LANG-NAME"))
+    (if (cdr data)
+        (lambda () (funcall new-major-mode) (funcall (cdr data)))
+     new-major-mode)))
 
 ;;;###autoload
 (defun reload-major-mode ()
