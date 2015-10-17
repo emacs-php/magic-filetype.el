@@ -1,5 +1,4 @@
 ;;; magic-filetype.el --- Parse Vim-style filetype header -*- lexical-binding: t -*-
-;;; vim: set ft=lisp:
 
 ;; Copyright (C) 2015 USAMI Kenta
 
@@ -7,7 +6,7 @@
 ;; Created: 9 Aug 2015
 ;; Version: 0.0.1
 ;; Keywords: vim ft file magic-mode
-;; Package-Requires: ((s "1.9.0"))
+;; Package-Requires: ((emacs "24") (s "1.9.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
