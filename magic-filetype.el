@@ -153,10 +153,12 @@
       (magic-filetype:major-mode-from-language-name lang))))
 
 ;;;###autoload
-(defun magic-filetype:enable-vim-filetype ()
+(defun magic-filetype:enable-vim-filetype (&optional force)
   "Turn on magic-mode by Vim-style file header."
   (interactive)
-  (add-to-list 'magic-fallback-mode-alist '(magic-filetype:vim-filetype-magic-mode . magic-filetype:vim-filetype-magic-mode)))
+  (add-to-list
+   (if force 'magic-mode-alist 'magic-fallback-mode-alist)
+   '(magic-filetype:vim-filetype-magic-mode . magic-filetype:vim-filetype-magic-mode)))
 
 ;;;###autoload
 (defun magic-filetype:major-mode-of (lang-name)
