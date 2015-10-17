@@ -1,9 +1,7 @@
 * magic-filetype
 #+BEGIN_HTML
 <a href="https://travis-ci.org/zonuexe/magic-filetype.el"><img alt="Build Status" src="https://travis-ci.org/zonuexe/magic-filetype.el.svg?branch=master"></a>
-<a href='https://coveralls.io/r/zonuexe/magic-filetype.el?branch=master'><img alt="Coverage Status" src="https://coveralls.io/repos/zonuexe/magic-filetype.el/badge.svg?branch=master"></a>
 #+END_HTML
-=vim-filetype.el= parse Vim-style filetype header.
 
 ** Features
 
@@ -21,3 +19,8 @@ for example...
 (add-to-list 'auto-mode-alist '("/composer.lock\\'" . (major-mode-of 'json)))
 #+END_SRC
 
+*** Use major mode from language name
+=M-x major-mode-from-language-name=
+
+*** Reload major mode
+=M-x reload-major-mode=
