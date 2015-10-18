@@ -11,19 +11,25 @@ Enhance filetype major mode
 *** Support Vim-style filetype
 put into your own =.emacs= file (=init.el=)
 #+BEGIN_SRC emacs-lisp
-(magic-filetype:enable-vim-filetype)
+(magic-filetype-enable-vim-filetype)
 #+END_SRC
 
 *** Major mode settings
 for example...
-
 #+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist `("/.fooconfig\\'" . ,(magic-filetype-major-mode-of 'javascript)))
+(add-to-list 'auto-mode-alist `("/composer.lock\\'" . ,(magic-filetype-major-mode-of 'json)))
+#+END_SRC
+
+If you write the setting to =.emacs=, you can be briefly defined as follows.
+#+BEGIN_SRC emacs-lisp
+(defalias 'major-mode-of (symbol-function 'magic-filetype-major-mode-of))
+
 (add-to-list 'auto-mode-alist `("/\\.mysql\\'" . ,(major-mode-of 'mysql)))
-(add-to-list 'auto-mode-alist `("/composer.lock\\'" . ,(major-mode-of 'json)))
 #+END_SRC
 
 *** Use major mode from language name
-=M-x magic-filetype:major-mode-from-language-name=
+=M-x magic-filetype-major-mode-from-language-name=
 
 *** Reload major mode
-=M-x magic-filetype:reload-major-mode=
+=M-x magic-filetype-reload-major-mode=

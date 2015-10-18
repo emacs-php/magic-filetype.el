@@ -174,9 +174,6 @@
       new-major-mode)))
 
 ;;;###autoload
-(defalias 'major-mode-of (symbol-function 'magic-filetype-major-mode-of))
-
-;;;###autoload
 (defun magic-filetype-reload-major-mode ()
   "Reload current major mode."
   (interactive)
