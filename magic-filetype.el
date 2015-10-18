@@ -51,7 +51,7 @@
   :group 'magic-filetype
   :type  'regexp)
 
-(defcustom magic-filetype-mode-alist
+(defcustom magic-filetype-exemplary-filename-alist
   '((applescript  . ("/dir/file.scpt"))
     (basic        . ("/dir/file.bas"))
     (c            . ("/dir/file.c"))
@@ -130,9 +130,9 @@
   "Invoke `major-mode' from `LANG-NAME'."
   (interactive
    (list
-    (completing-read "Choose language: " magic-filetype-mode-alist)))
+    (completing-read "Choose language: " magic-filetype-exemplary-filename-alist)))
   (when lang-name
-    (let* ((data (cdr (assq (intern lang-name) magic-filetype-mode-alist)))
+    (let* ((data (cdr (assq (intern lang-name) magic-filetype-exemplary-filename-alist)))
            (file (car data))
            (new-major-mode
             (if (symbolp file) file
@@ -163,7 +163,7 @@
 ;;;###autoload
 (defun magic-filetype-major-mode-of (lang-name)
   "Get MAJOR-MODE from `LANG-NAME'."
-  (let* ((data (cdr (assq lang-name magic-filetype-mode-alist)))
+  (let* ((data (cdr (assq lang-name magic-filetype-exemplary-filename-alist)))
          (file (car data))
          (new-major-mode
           (if (symbolp file) file
