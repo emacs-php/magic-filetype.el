@@ -55,6 +55,7 @@
   '((applescript  . ("/dir/file.scpt"))
     (basic        . ("/dir/file.bas"))
     (c            . ("/dir/file.c"))
+    (caml         . ("/dir/file.ml"))
     (changelog    . ("/dir/Changelog"))
     (clojure      . ("/dir/file.clj"))
     (coffee       . ("/dir/file.coffee"))
@@ -93,7 +94,7 @@
     (markdown     . ("/dir/file.md"))
     (msql         . (sql-mode))
     (mysql        . (sql-mode . (lambda () (sql-set-product 'mysql))))
-    (ocaml        . ("/dir/file.ml"))
+    (ocaml        . ("/dir/file.ocaml"))
     (org          . ("/dir/file.org"))
     (pascal       . ("/dir/file.pas"))
     (perl         . ("/dir/file.pl"))
@@ -122,6 +123,22 @@
     (yaml         . ("/dir/file.yml"))
     (zsh          . (sh-mode . (lambda () (sh-set-shell "zsh")))))
   "Alist of Vim-filetype vs dummy filename."
+  :group 'magic-filetype
+  :type  '(alist :key-type symbol :value-type list))
+
+(defcustom magic-filetype-auto-mode-alist
+  `((caml         . ("\\.ml[iyl]?\\'"))
+    (cpp          . (,(rx (or ".cc" ".cxx" ".c++") string-end)))
+    (delphi       . ("\\.dp[kr]\\'"))
+    (json         . (("/composer.lock")))
+    (markdown     . ("\\.mk?dn?\\'" "\\.m\\(ark\\)?do?wn\\'"))
+    (perl         . ("\\.pm\\'"))
+    (python       . (("/SConstruct" "/SConscript" "/wscript")))
+    (ruby         . (,(rx (or ".gemspec" ".thor" ".ru") string-end)
+                     ("/Berksfile" "/Capfile" "/Gemfile" "/Guardfile" "/Podfile" "/Rakefile" "/Vagrantfile")))
+    (scheme       . (,(rx (or ".rkt" ".ss" ".sls" ".sld") string-end)))
+    (yaml         . ("\\.yaml\\'")))
+  "Alist of Vim-filetype vs auto-mode patterns."
   :group 'magic-filetype
   :type  '(alist :key-type symbol :value-type list))
 
@@ -172,6 +189,18 @@
     (if (cdr data)
         (lambda () (funcall new-major-mode) (funcall (cdr data)))
       new-major-mode)))
+
+;;;###autoload
+(defun magic-filetype-set-auto-mode (lang-name)
+  "Set `auto-mode-alist' by `LANG-NAME'."
+  (let* ((data           (assq lang-name magic-filetype-auto-mode-alist))
+         (new-major-mode (magic-filetype-major-mode-of (car data))))
+    (mapc
+     (lambda (ext)
+       (add-to-list 'auto-mode-alist
+                    (cons (if (listp ext) (concat (regexp-opt ext) "\\'") ext)
+                          new-major-mode)))
+          (cdr data))))
 
 ;;;###autoload
 (defun magic-filetype-reload-major-mode ()
