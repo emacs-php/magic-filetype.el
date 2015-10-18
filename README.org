@@ -23,7 +23,7 @@ for example...
 
 If you write the setting to =.emacs=, you can be briefly defined as follows.
 #+BEGIN_SRC emacs-lisp
-(defalias 'major-mode-of (symbol-function 'magic-filetype-major-mode-of))
+(defalias 'major-mode-of 'magic-filetype-major-mode-of)
 
 (add-to-list 'auto-mode-alist `("/\\.mysql\\'" . ,(major-mode-of 'mysql)))
 #+END_SRC
