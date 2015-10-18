@@ -126,7 +126,7 @@
   :type  '(alist :key-type symbol :value-type list))
 
 ;;;###autoload
-(defun magic-filetype:major-mode-from-language-name (lang-name)
+(defun magic-filetype-major-mode-from-language-name (lang-name)
   "Invoke `major-mode' from `LANG-NAME'."
   (interactive
    (list
@@ -144,24 +144,24 @@
         new-major-mode))))
 
 ;;;###autoload
-(defun magic-filetype:vim-filetype-magic-mode (&optional ft)
+(defun magic-filetype-vim-filetype-magic-mode (&optional ft)
   "Invoke `major-mode' by Vim-style `FT' file header."
   (interactive)
   (let* ((bufs (buffer-substring-no-properties (point-min) (point-max)))
          (lang (or ft (cadr (s-match magic-filetype-vim-filetype-line-re bufs)))))
     (when lang
-      (magic-filetype:major-mode-from-language-name lang))))
+      (magic-filetype-major-mode-from-language-name lang))))
 
 ;;;###autoload
-(defun magic-filetype:enable-vim-filetype (&optional force)
+(defun magic-filetype-enable-vim-filetype (&optional force)
   "Turn on magic-mode by Vim-style file header."
   (interactive)
   (add-to-list
    (if force 'magic-mode-alist 'magic-fallback-mode-alist)
-   '(magic-filetype:vim-filetype-magic-mode . magic-filetype:vim-filetype-magic-mode)))
+   '(magic-filetype-vim-filetype-magic-mode . magic-filetype-vim-filetype-magic-mode)))
 
 ;;;###autoload
-(defun magic-filetype:major-mode-of (lang-name)
+(defun magic-filetype-major-mode-of (lang-name)
   "Get MAJOR-MODE from `LANG-NAME'."
   (let* ((data (cdr (assq lang-name magic-filetype-mode-alist)))
          (file (car data))
@@ -174,10 +174,10 @@
       new-major-mode)))
 
 ;;;###autoload
-(defalias 'major-mode-of (symbol-function 'magic-filetype:major-mode-of))
+(defalias 'major-mode-of (symbol-function 'magic-filetype-major-mode-of))
 
 ;;;###autoload
-(defun magic-filetype:reload-major-mode ()
+(defun magic-filetype-reload-major-mode ()
   "Reload current major mode."
   (interactive)
   (let ((current-mode major-mode))
