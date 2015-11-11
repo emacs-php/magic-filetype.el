@@ -6,7 +6,7 @@
 
 Enhance filetype major mode
 
-** Instllation
+** Installation
 *** Cask
 See [[http://cask.readthedocs.org/en/latest/guide/installation.html][Cask Installation]].  put into your own =Cask= file.
 *** MELPA
