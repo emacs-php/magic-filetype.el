@@ -140,6 +140,7 @@
                      ("/Berksfile" "/Capfile" "/Gemfile" "/Guardfile" "/Podfile" "/Rakefile" "/Vagrantfile")))
     (scheme       . (,(rx (or ".rkt" ".ss" ".sls" ".sld") string-end)))
     (vb           . (,(rx (or ".frm" ".bas" ".cls" ".vb" ".rvb") string-end)))
+    (xml          . ("\\.plist\\'"))
     (yaml         . ("\\.yaml\\'")))
   "Alist of Vim-filetype vs auto-mode patterns."
   :group 'magic-filetype
