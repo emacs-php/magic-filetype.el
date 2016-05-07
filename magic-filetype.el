@@ -44,6 +44,8 @@
 ;;; Code:
 
 (require 's)
+(eval-when-compile
+  (require 'rx))
 
 (defcustom magic-filetype-vim-filetype-line-re
   "vim: *set +\\(?:ft\\|filetype\\)=\\(.+\\):"
@@ -129,19 +131,20 @@
   :type  '(alist :key-type symbol :value-type list))
 
 (defcustom magic-filetype-auto-mode-alist
-  `((caml         . ("\\.ml[iyl]?\\'"))
-    (cpp          . (,(rx (or ".cc" ".cxx" ".c++") string-end)))
-    (delphi       . ("\\.dp[kr]\\'"))
-    (json         . (("/composer\\.lock" "/\\.stylintrc")))
-    (markdown     . ("\\.mk?dn?\\'" "\\.m\\(ark\\)?do?wn\\'"))
-    (perl         . ("\\.pm\\'"))
-    (python       . (("/SConstruct" "/SConscript" "/wscript")))
-    (ruby         . (,(rx (or ".gemspec" ".thor" ".ru") string-end)
+  (eval-when-compile
+    `((caml       . ("\\.ml[iyl]?\\'"))
+      (cpp        . (,(rx (or ".cc" ".cxx" ".c++") string-end)))
+      (delphi     . ("\\.dp[kr]\\'"))
+      (json       . (("/composer\\.lock" "/\\.stylintrc")))
+      (markdown   . ("\\.mk?dn?\\'" "\\.m\\(ark\\)?do?wn\\'"))
+      (perl       . ("\\.pm\\'"))
+      (python     . (("/SConstruct" "/SConscript" "/wscript")))
+      (ruby       . (,(rx (or ".gemspec" ".thor" ".ru" ".jbuilder" "podspec") string-end)
                      ("/Berksfile" "/Capfile" "/Gemfile" "/Guardfile" "/Podfile" "/Rakefile" "/Vagrantfile")))
-    (scheme       . (,(rx (or ".rkt" ".ss" ".sls" ".sld") string-end)))
-    (vb           . (,(rx (or ".frm" ".bas" ".cls" ".vb" ".rvb") string-end)))
-    (xml          . ("\\.plist\\'"))
-    (yaml         . ("\\.yaml\\'")))
+      (scheme     . (,(rx (or ".rkt" ".ss" ".sls" ".sld") string-end)))
+      (vb         . (,(rx (or ".frm" ".bas" ".cls" ".vb" ".rvb") string-end)))
+      (xml        . ("\\.plist\\'"))
+      (yaml       . ("\\.yaml\\'"))))
   "Alist of Vim-filetype vs auto-mode patterns."
   :group 'magic-filetype
   :type  '(alist :key-type symbol :value-type list))
@@ -204,7 +207,7 @@
        (add-to-list 'auto-mode-alist
                     (cons (if (listp ext) (concat (regexp-opt ext) "\\'") ext)
                           new-major-mode)))
-          (cdr data))))
+     (cdr data))))
 
 ;;;###autoload
 (defun magic-filetype-reload-major-mode ()
