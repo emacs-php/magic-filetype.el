@@ -7,6 +7,7 @@
 ;; Created: 9 Aug 2015
 ;; Version: 0.1.3
 ;; Keywords: vim ft file magic-mode
+;; Homepage: https://github.com/zonuexe/magic-filetype.el
 ;; Package-Requires: ((emacs "24") (s "1.9.0"))
 
 ;; This file is NOT part of GNU Emacs.
@@ -26,7 +27,7 @@
 
 ;;; Commentary:
 
-;; `magic-filetype' parse Vim-style file header.
+;; `magic-filetype' parse Vim-style file type header.
 ;; For example, in executable JavaScript(node) file is...
 
 ;;   #!/usr/bin/env node
@@ -37,9 +38,9 @@
 
 ;; put into your own .emacs file (init.el)
 
-;;   (enable-vim-filetype)
+;;   (magic-filetype-enable-vim-filetype)
 
-;; `vim-filetype-mode-alist' have dummy filename that is delegate of major-mode.
+;; `magic-filetype-exemplary-filename-alist' have dummy filename that is delegate of major-mode.
 
 ;;; Code:
 

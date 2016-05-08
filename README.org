@@ -19,7 +19,7 @@ See [[https://github.com/dimitri/el-get#installation][El-Get #Installation]].  p
 
 ** Features
 
-*** Support Vim-style filetype
+*** Support Vim-style file type header
 put into your own =.emacs= file (=init.el=)
 #+BEGIN_SRC emacs-lisp
 (magic-filetype-enable-vim-filetype)
@@ -29,7 +29,7 @@ put into your own =.emacs= file (=init.el=)
 for example...
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist `("/.fooconfig\\'" . ,(magic-filetype-major-mode-of 'javascript)))
-(add-to-list 'auto-mode-alist `("/composer.lock\\'" . ,(magic-filetype-major-mode-of 'json)))
+(add-to-list 'auto-mode-alist `("/FooPack.lock\\'" . ,(magic-filetype-major-mode-of 'json)))
 #+END_SRC
 
 If you write the setting to =.emacs=, you can be briefly defined as follows.
