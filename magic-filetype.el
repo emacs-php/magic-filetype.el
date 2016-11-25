@@ -6,7 +6,7 @@
 ;; Author: USAMI Kenta <tadsan@zonu.me>
 ;; Created: 9 Aug 2015
 ;; Version: 0.1.3
-;; Keywords: vim ft file magic-mode
+;; Keywords: emulations vim ft file magic-mode
 ;; Homepage: https://github.com/zonuexe/magic-filetype.el
 ;; Package-Requires: ((emacs "24") (s "1.9.0"))
 
