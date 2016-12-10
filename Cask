@@ -1,7 +1,7 @@
 (source gnu)
 (source melpa)
 
-(package "magic-filetype" "0.1.3" "Parse Vim-style filetype header")
+(package "magic-filetype" "0.2.0" "Enhance filetype major mode")
 (package-file "magic-filetype.el")
 
 (depends-on "s")
