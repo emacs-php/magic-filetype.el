@@ -150,6 +150,12 @@
   :group 'magic-filetype
   :type  '(alist :key-type symbol :value-type list))
 
+(defun magic-filetype-collect-major-modes ()
+  "Retturn list of MAJOR-MODEs by `auto-mode-alist'."
+  (cl-loop for elm in auto-mode-alist
+           if (symbolp (cdr elm))
+           collect (cdr elm)))
+
 ;;;###autoload
 (defun magic-filetype-major-mode-from-language-name (lang-name)
   "Invoke `major-mode' from `LANG-NAME'."

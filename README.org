@@ -44,3 +44,10 @@ If you write the setting to =.emacs=, you can be briefly defined as follows.
 
 *** Reload major mode
 =M-x magic-filetype-reload-major-mode=
+
+** Utility function
+*** Collect major-modes
+#+BEGIN_SRC emacs-lisp
+(require 'magic-filetype')
+(completing-read "Input major mode: " (magic-filetype-collect-major-modes))
+#+END_SRC
