@@ -142,7 +142,10 @@
       (perl       . ("\\.pm\\'"))
       (python     . (("/SConstruct" "/SConscript" "/wscript")))
       (ruby       . (,(rx (or ".gemspec" ".thor" ".rabl" ".ru" ".jbuilder" ".podspec") string-end)
-                     ("/Berksfile" "/Capfile" "/Gemfile" "/Guardfile" "/Puppetfile" "/Podfile" "/Rakefile" "/Vagrantfile")))
+                     ("/Appraisals" "/Berksfile" "/Brewfile" "/Buildfile" "/Capfile" "/Dangerfile"
+                      "/Deliverfile" "/Fastfile" "/Gemfile" "/Guardfile" "/Jarfile" "/Mavenfile"
+                      "/Puppetfile" "/Podfile" "/Rakefile" "/Snapfile" "/Thorfile" "/Vagrantfile"
+                      "/buildfile")))
       (scheme     . (,(rx (or ".rkt" ".ss" ".sls" ".sld") string-end)))
       (vb         . (,(rx (or ".frm" ".bas" ".cls" ".vb" ".rvb") string-end)))
       (xml        . ("\\.plist\\'"))
