@@ -107,6 +107,7 @@
     (plsql        . (sql-mode . (lambda () (sql-set-product 'oracle))))
     (python       . ("/dir/file.py"))
     (rst          . ("/dir/file.rst"))
+    (rust         . ("/dir/file.rs"))    ;; Rust https://www.rust-lang.org/
     (ruby         . ("/dir/file.rb"))
     (sass         . ("/dir/file.sass"))
     (scala        . ("/dir/file.scala"))
