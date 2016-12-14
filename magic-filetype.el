@@ -136,7 +136,7 @@
     `((caml       . ("\\.ml[iyl]?\\'"))
       (cpp        . (,(rx (or ".cc" ".cxx" ".c++") string-end)))
       (delphi     . ("\\.dp[kr]\\'"))
-      (json       . (("/composer\\.lock" "/\\.stylintrc")))
+      (json       . (("/composer.lock" "/.jshintrc" "/.stylintrc")))
       (markdown   . ("\\.mk?dn?\\'" "\\.m\\(ark\\)?do?wn\\'"))
       (perl       . ("\\.pm\\'"))
       (python     . (("/SConstruct" "/SConscript" "/wscript")))
