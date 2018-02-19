@@ -94,6 +94,7 @@
     (json         . ("/dir/file.json"))
     (lisp         . ("/dir/file.lisp"))
     (nadeshiko    . ("/dir/file.nako"))
+    (nim          . ("/dir/file.nim"))   ;; Nim https://nim-lang.org/
     (m4           . ("/dir/file.m4"))
     (markdown     . ("/dir/file.md"))
     (msql         . (sql-mode))
