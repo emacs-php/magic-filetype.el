@@ -48,8 +48,8 @@
 (eval-when-compile
   (require 'rx))
 
-(defcustom magic-filetype-vim-filetype-line-re
-  "vim: *set +\\(?:ft\\|filetype\\)=\\(.+\\):"
+(defcustom  magic-filetype-vim-filetype-line-re
+  "vim: *set +\\(?:.*?\\)\\(?:ft\\|filetype\\)=\\([^ :]+\\)\\(?:.*?\\):$"
   "Regexp of Vim filetype line."
   :group 'magic-filetype
   :type  'regexp)

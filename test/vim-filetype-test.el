@@ -16,7 +16,18 @@
   (let ((data
          (list
           (list :expected "javascript"
-                :header "// vim:set ft=javascript:"))))
+                :header "// vim:set ft=javascript:")
+          (list :expected "javascript"
+                :header "// vim:set ft=javascript :")
+          (list :expected "javascript"
+                :header "// vim:set expandtab ft=javascript:")
+          (list :expected "javascript"
+                :header "// vim:set ft=javascript expandtab:")
+          (list :expected "javascript"
+                :header "// vim:set fenc=cp932 ff=unix ft=javascript:")
+          (list :expected "javascript"
+                :header "// vim:set ff=unix ft=javascript fenc=cp932:")
+          )))
     (mapc
      (lambda (d)
        (let ((expected (plist-get d :expected))
