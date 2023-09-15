@@ -7,7 +7,7 @@
 ;; Created: 9 Aug 2015
 ;; Version: 0.2.0
 ;; Keywords: emulations vim ft file magic-mode
-;; Homepage: https://github.com/zonuexe/magic-filetype.el
+;; Homepage: https://github.com/emacs-php/magic-filetype.el
 ;; Package-Requires: ((emacs "24") (s "1.9.0"))
 
 ;; This file is NOT part of GNU Emacs.
