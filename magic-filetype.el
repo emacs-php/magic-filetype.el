@@ -8,7 +8,7 @@
 ;; Version: 0.2.0
 ;; Keywords: emulations vim ft file magic-mode
 ;; Homepage: https://github.com/emacs-php/magic-filetype.el
-;; Package-Requires: ((emacs "24") (s "1.9.0"))
+;; Package-Requires: ((emacs "24.3") (s "1.9.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -46,6 +46,7 @@
 
 (require 's)
 (eval-when-compile
+  (require 'cl-lib)
   (require 'rx))
 
 (defcustom  magic-filetype-vim-filetype-line-re
@@ -92,6 +93,8 @@
     (java         . ("/dir/file.java"))
     (javascript   . ("/dir/file.js"))
     (json         . ("/dir/file.json"))
+    (json5        . ("/dir/file.json5"))
+    (kotlin       . ("/dir/file.kotlin"))
     (lisp         . ("/dir/file.lisp"))
     (nadeshiko    . ("/dir/file.nako"))
     (nim          . ("/dir/file.nim"))   ;; Nim https://nim-lang.org/
@@ -107,6 +110,7 @@
     (php          . ("/dir/file.php"))
     (plsql        . (sql-mode . (lambda () (sql-set-product 'oracle))))
     (python       . ("/dir/file.py"))
+    (rmd          . ("/dir/file.rmd"))
     (rst          . ("/dir/file.rst"))
     (rust         . ("/dir/file.rs"))    ;; Rust https://www.rust-lang.org/
     (ruby         . ("/dir/file.rb"))
@@ -114,20 +118,24 @@
     (scala        . ("/dir/file.scala"))
     (scheme       . ("/dir/file.scm"))
     (scss         . ("/dir/file.scss"))
+    (solidity     . ("/dir/file.sol"))
     (standardml   . ("/dir/file.sml"))
     (sql          . ("/dir/file.sql"))
     (sqlinformix  . (sql-mode . (lambda () (sql-set-product 'informix))))
     (sqloracle    . (sql-mode . (lambda () (sql-set-product 'oracle))))
+    (svn          . ("/dir/file.svn"))
     (swift        . ("/dir/file.swift"))
     (tcsh         . (sh-mode . (lambda () (sh-set-shell "tcsh"))))
     (texinfo      . ("/dir/file.texi"))
     (text         . ("/dir/file.txt"))
     (typescript   . ("/dir/file.ts"))
+    (unison       . ("/dir/file.u"))
     (vb           . ("/dir/file.vb"))
     (vim          . ("/dir/file.vim"))
     (xhtml        . ("/dir/file.xhtml"))
     (xml          . ("/dir/file.xml"))
     (yaml         . ("/dir/file.yml"))
+    (zig          . ("/dir/file.zig"))
     (zsh          . (sh-mode . (lambda () (sh-set-shell "zsh")))))
   "Alist of Vim-filetype vs dummy filename."
   :group 'magic-filetype
@@ -198,7 +206,7 @@
 
 ;;;###autoload
 (defun magic-filetype-major-mode-of (lang-name)
-  "Get MAJOR-MODE from `LANG-NAME'."
+  "Get MAJOR-MODE from LANG-NAME."
   (let* ((data (cdr (assq lang-name magic-filetype-exemplary-filename-alist)))
          (file (car data))
          (new-major-mode
@@ -211,7 +219,7 @@
 
 ;;;###autoload
 (defun magic-filetype-set-auto-mode (lang-name)
-  "Set `auto-mode-alist' by `LANG-NAME'."
+  "Set `auto-mode-alist' by LANG-NAME."
   (let* ((data           (assq lang-name magic-filetype-auto-mode-alist))
          (new-major-mode (magic-filetype-major-mode-of (car data))))
     (mapc
