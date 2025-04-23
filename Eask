@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "magic-filetype"
          "0.2.0"
          "Enhance filetype major mode")
